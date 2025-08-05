@@ -6,15 +6,19 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 4f, Color.green, 2f);
-
         if (Input.GetKeyDown(KeyCode.W))
         {
-            cameraTransform.position += 4 * cameraTransform.forward;
+            if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 4.1f))
+            {
+                cameraTransform.position += 4 * cameraTransform.forward;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            cameraTransform.position -= 4 * cameraTransform.forward;
+            if (!Physics.Raycast(cameraTransform.position, -cameraTransform.forward, out RaycastHit hit, 4.1f))
+            {
+                cameraTransform.position -= 4 * cameraTransform.forward;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
