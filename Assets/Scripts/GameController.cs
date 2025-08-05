@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 4f, Color.green, 2f);
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             cameraTransform.position += 4 * cameraTransform.forward;
@@ -16,11 +18,6 @@ public class GameController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            // We cannot do:
-            // rotation += Quaternion.Euler(0f, -90f, 0f);
-
-            // Because tha nature of quaternions, but imagine that
-            // sum of quaternions are multiplication, so we can do:
             cameraTransform.rotation *= Quaternion.Euler(0f, -90f, 0f);
         }
         else if (Input.GetKeyDown(KeyCode.D))
