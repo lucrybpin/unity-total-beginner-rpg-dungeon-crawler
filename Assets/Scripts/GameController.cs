@@ -4,6 +4,11 @@ public class GameController : MonoBehaviour
 {
     public Transform cameraTransform;
 
+    void Start()
+    {
+        Physics.queriesHitTriggers = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
