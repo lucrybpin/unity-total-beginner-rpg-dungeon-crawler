@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public Transform cameraTransform;
 
+    public EndOfDungeon endOfDungeon;
+    public GameObject canvasEndOfGame;
+
     void Start()
     {
         Physics.queriesHitTriggers = false;
+        endOfDungeon.OnEnterEndOfDungeon += EndGame;
     }
 
     void Update()
@@ -34,4 +39,16 @@ public class GameController : MonoBehaviour
             cameraTransform.rotation *= Quaternion.Euler(0f, 90f, 0f);
         }
     }
+
+    void EndGame()
+    {
+        canvasEndOfGame.SetActive(true);
+    }
+
+    public void CloseGame()
+    {
+        Debug.Log($">>>> Close Game Clicked");
+        Application.Quit();
+    }
+
 }
