@@ -29,4 +29,18 @@ public class PlayerController : MonoBehaviour
             cameraTransform.rotation *= Quaternion.Euler(0f, 90f, 0f);
         }
     }
+
+    public void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 4.1f))
+            {
+                if (hit.transform.gameObject.TryGetComponent<Skeleton>(out Skeleton skeleton))
+                {
+                    skeleton.ReceiveDamage(10);
+                }
+            }
+        }
+    }
 }

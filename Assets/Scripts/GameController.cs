@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public PlayerController playerController;
+    public Skeleton skeleton;
     public EndOfDungeon endOfDungeon;
     public GameObject canvasEndOfGame;
 
@@ -12,12 +13,17 @@ public class GameController : MonoBehaviour
     {
         Physics.queriesHitTriggers = false;
         endOfDungeon.OnEnterEndOfDungeon += EndGame;
+
+        skeleton.Initialize(100);
     }
 
     void Update()
     {
-        if(!gameFinished)
+        if (!gameFinished)
+        {
             playerController.Move();
+            playerController.Attack();
+        }
     }
 
     void EndGame()
