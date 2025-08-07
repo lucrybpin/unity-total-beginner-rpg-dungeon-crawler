@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
     public PlayerController playerController;
     public Skeleton skeleton;
     public EndOfDungeon endOfDungeon;
+    public SwordTrigger swordTrigger;
     public GameObject canvasEndOfGame;
     public GameObject canvasDieEndGame;
 
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour
         Physics.queriesHitTriggers = false;
         endOfDungeon.OnEnterEndOfDungeon += EndGame;
         playerController.OnPlayerDie += DieEndGame;
+        swordTrigger.OnSwordFound += AddSwordToPlayer;
 
         playerController.Initialize(10);
         skeleton.Initialize(100);
@@ -29,6 +31,12 @@ public class GameController : MonoBehaviour
 
             skeleton.Attack();
         }
+    }
+
+    void AddSwordToPlayer()
+    {
+        swordTrigger.gameObject.SetActive(false);
+        playerController.EquipSword();
     }
 
     void EndGame()

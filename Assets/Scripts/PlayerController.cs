@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int HP;
-    public Transform cameraTransform;
+    public bool HaveSword = false;
+    public GameObject SwordView;
 
     public Action OnPlayerDie;
 
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
+        if (!HaveSword)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
@@ -51,6 +55,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EquipSword()
+    {
+        HaveSword = true;
+        SwordView.SetActive(true);
     }
 
 
