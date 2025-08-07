@@ -19,13 +19,16 @@ public class Skeleton : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        Debug.DrawRay(transform.position + offset, transform.forward * 4f, Color.green, 2f);
         if (Physics.Raycast(transform.position + offset, transform.forward, out RaycastHit hit, 4.1f))
         {
-            if (attackTimer > attackDelay)
+            if (hit.transform.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
             {
-                attackTimer = 0f;
-                animator.SetTrigger("Attack");
+                if (attackTimer > attackDelay)
+                {
+                    attackTimer = 0f;
+                    animator.SetTrigger("Attack");
+                    player.ReceiveDamage(2);
+                }
             }
         }
     }

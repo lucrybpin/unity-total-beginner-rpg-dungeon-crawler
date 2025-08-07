@@ -1,8 +1,17 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int HP;
     public Transform cameraTransform;
+
+    public Action OnPlayerDie;
+
+    public void Initialize(int initialHP)
+    {
+        HP = initialHP;
+    }
 
     public void Move()
     {
@@ -41,6 +50,22 @@ public class PlayerController : MonoBehaviour
                     skeleton.ReceiveDamage(10);
                 }
             }
+        }
+    }
+
+
+    public void ReceiveDamage(int amount)
+    {
+        if (amount < HP)
+        {
+            // Hurt
+            HP -= amount;
+        }
+        else
+        {
+            // Die
+            HP = 0;
+            OnPlayerDie?.Invoke();
         }
     }
 }
