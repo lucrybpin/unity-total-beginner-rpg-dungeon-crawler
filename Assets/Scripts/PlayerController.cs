@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public int HP;
     public bool HaveSword = false;
     public GameObject SwordView;
+    public Animator swordAnimator;
 
     public Action OnPlayerDie;
 
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            swordAnimator.SetTrigger("Attack");
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
             {
                 if (hit.transform.gameObject.TryGetComponent<Skeleton>(out Skeleton skeleton))

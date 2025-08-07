@@ -1881,6 +1881,7 @@ MonoBehaviour:
   HP: 0
   HaveSword: 0
   SwordView: {fileID: 358256799}
+  swordAnimator: {fileID: 358256805}
 --- !u!4 &291017274
 Transform:
   m_ObjectHideFlags: 0
@@ -2303,6 +2304,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0db928c1eed56a4ea88c74701f97e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &358256805
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358256799}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 302eff645343cb845ab39e6add8b8372, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &373780914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6730,7 +6753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1127450730860520516, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.47341454
+      value: -0.4734145
       objectReference: {fileID: 0}
     - target: {fileID: 1127450730860520516, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6771,6 +6794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       insertIndex: 1
       addedObject: {fileID: 358256804}
+    - targetCorrespondingSourceObject: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 358256805}
   m_SourcePrefab: {fileID: 100100000, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
 --- !u!1001 &1128004350
 PrefabInstance:
