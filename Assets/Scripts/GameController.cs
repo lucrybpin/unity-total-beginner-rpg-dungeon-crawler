@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
         {
             playerController.Move();
             playerController.Attack();
+
+            skeleton.Attack();
         }
     }
 

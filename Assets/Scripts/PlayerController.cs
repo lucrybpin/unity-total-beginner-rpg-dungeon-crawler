@@ -8,25 +8,25 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 4.1f))
+            if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
             {
-                cameraTransform.position += 4 * cameraTransform.forward;
+                transform.position += 4 * transform.forward;
             }
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            if (!Physics.Raycast(cameraTransform.position, -cameraTransform.forward, out RaycastHit hit, 4.1f))
+            if (!Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 4.1f))
             {
-                cameraTransform.position -= 4 * cameraTransform.forward;
+                transform.position -= 4 * transform.forward;
             }
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            cameraTransform.rotation *= Quaternion.Euler(0f, -90f, 0f);
+            transform.rotation *= Quaternion.Euler(0f, -90f, 0f);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            cameraTransform.rotation *= Quaternion.Euler(0f, 90f, 0f);
+            transform.rotation *= Quaternion.Euler(0f, 90f, 0f);
         }
     }
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, 4.1f))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
             {
                 if (hit.transform.gameObject.TryGetComponent<Skeleton>(out Skeleton skeleton))
                 {

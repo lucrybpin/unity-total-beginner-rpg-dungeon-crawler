@@ -4,11 +4,30 @@ public class Skeleton : MonoBehaviour
 {
     public int HP;
     public Animator animator;
-    public BoxCollider collider;
+    public BoxCollider boxCollider;
+    public Vector3 offset;
+
+    public float attackDelay = 4f;
+    public float attackTimer = 0f;
 
     public void Initialize(int initialHP)
     {
         HP = initialHP;
+    }
+
+    public void Attack()
+    {
+        attackTimer += Time.deltaTime;
+
+        Debug.DrawRay(transform.position + offset, transform.forward * 4f, Color.green, 2f);
+        if (Physics.Raycast(transform.position + offset, transform.forward, out RaycastHit hit, 4.1f))
+        {
+            if (attackTimer > attackDelay)
+            {
+                attackTimer = 0f;
+                animator.SetTrigger("Attack");
+            }
+        }
     }
 
     public void ReceiveDamage(int amount)
@@ -24,7 +43,7 @@ public class Skeleton : MonoBehaviour
             // Die
             HP = 0;
             animator.SetTrigger("Die");
-            collider.enabled = false;
+            boxCollider.enabled = false;
         }
     }
 }
