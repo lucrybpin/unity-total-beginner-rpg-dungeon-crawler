@@ -7,7 +7,6 @@ public class SwordTrigger : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log($">>>> Sword found");
         OnSwordFound?.Invoke();
     }
 }
