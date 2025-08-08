@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool HaveSword = false;
     public GameObject SwordView;
     public Animator swordAnimator;
+    public bool isMoving = false;
 
     public Action OnPlayerDie;
 
@@ -17,27 +19,42 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
+        if (isMoving)
+            return;
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
             {
-                transform.position += 4 * transform.forward;
+                isMoving = true;
+                transform
+                    .DOLocalMove(transform.position + 4 * transform.forward, 0.37f)
+                    .OnComplete(() => isMoving = false);
             }
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             if (!Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 4.1f))
             {
-                transform.position -= 4 * transform.forward;
+                isMoving = true;
+                transform
+                    .DOLocalMove(transform.position - 4 * transform.forward, 0.37f)
+                    .OnComplete(() => isMoving = false);
             }
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.rotation *= Quaternion.Euler(0f, -90f, 0f);
+            isMoving = true;
+            transform
+                    .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, -90f, 0), 0.37f)
+                    .OnComplete(() => isMoving = false);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.rotation *= Quaternion.Euler(0f, 90f, 0f);
+            isMoving = true;
+            transform
+                    .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, 90f, 0), 0.37f)
+                    .OnComplete(() => isMoving = false);
         }
     }
 
