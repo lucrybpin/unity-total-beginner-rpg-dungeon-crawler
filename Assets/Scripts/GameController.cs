@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
@@ -6,8 +8,10 @@ public class GameController : MonoBehaviour
     public Skeleton skeleton;
     public EndOfDungeon endOfDungeon;
     public SwordTrigger swordTrigger;
+    public CutsceneTrigger cutsceneTrigger;
     public GameObject canvasEndOfGame;
     public GameObject canvasDieEndGame;
+    public PlayableDirector playableDirector;
 
     private bool gameFinished = false;
 
@@ -17,6 +21,7 @@ public class GameController : MonoBehaviour
         endOfDungeon.OnEnterEndOfDungeon += EndGame;
         playerController.OnPlayerDie += DieEndGame;
         swordTrigger.OnSwordFound += AddSwordToPlayer;
+        cutsceneTrigger.OnTriggerEnterCutscene += StartCutscene;
 
         playerController.Initialize(10);
         skeleton.Initialize(100);
@@ -37,6 +42,12 @@ public class GameController : MonoBehaviour
     {
         swordTrigger.gameObject.SetActive(false);
         playerController.EquipSword();
+    }
+
+    private void StartCutscene()
+    {
+        cutsceneTrigger.gameObject.SetActive(false);
+        playableDirector.Play();
     }
 
     void EndGame()
