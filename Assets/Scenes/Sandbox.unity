@@ -1954,6 +1954,8 @@ MonoBehaviour:
   SwordView: {fileID: 358256799}
   swordAnimator: {fileID: 358256805}
   isMoving: 0
+  attackDelay: 0.5
+  attackTimer: 0.5
 --- !u!4 &291017274
 Transform:
   m_ObjectHideFlags: 0

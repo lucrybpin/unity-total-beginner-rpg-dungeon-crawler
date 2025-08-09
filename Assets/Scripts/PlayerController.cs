@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public Animator swordAnimator;
     public bool isMoving = false;
 
+    public float attackDelay = 1f;
+    public float attackTimer = 1f;
+
     public Action OnPlayerDie;
 
     public void Initialize(int initialHP)
@@ -63,14 +66,20 @@ public class PlayerController : MonoBehaviour
         if (!HaveSword)
             return;
 
+        attackTimer += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            swordAnimator.SetTrigger("Attack");
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
+            if (attackTimer > attackDelay)
             {
-                if (hit.transform.gameObject.TryGetComponent<Skeleton>(out Skeleton skeleton))
+                attackTimer = 0f;
+                swordAnimator.SetTrigger("Attack");
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 4.1f))
                 {
-                    skeleton.ReceiveDamage(10);
+                    if (hit.transform.gameObject.TryGetComponent<Skeleton>(out Skeleton skeleton))
+                    {
+                        skeleton.ReceiveDamage(10);
+                    }
                 }
             }
         }

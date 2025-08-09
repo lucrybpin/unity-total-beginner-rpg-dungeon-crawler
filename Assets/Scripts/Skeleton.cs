@@ -17,6 +17,9 @@ public class Skeleton : MonoBehaviour
 
     public void Attack()
     {
+        if (HP == 0)
+            return;
+
         attackTimer += Time.deltaTime;
 
         if (Physics.Raycast(transform.position + offset, transform.forward, out RaycastHit hit, 4.1f))
@@ -35,6 +38,9 @@ public class Skeleton : MonoBehaviour
 
     public void ReceiveDamage(int amount)
     {
+        if (HP == 0)
+            return;
+
         if (amount < HP)
         {
             // Hurt
